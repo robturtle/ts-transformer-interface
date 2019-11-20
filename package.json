@@ -1,0 +1,27 @@
+{
+  "name": "ts-transformer-interface",
+  "version": "0.1.0",
+  "description": "A TypeScript custom transformer generating runtime interface info",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robturtle/ts-transformer-interface.git"
+  },
+  "keywords": [
+    "TypeScript"
+  ],
+  "author": "Yang Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robturtle/ts-transformer-interface/issues"
+  },
+  "homepage": "https://github.com/robturtle/ts-transformer-interface#readme",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.11",
+    "mocha": "^6.2.2",
+    "typescript": "^3.7.2"
+  },
+  "peerDependencies": {
+    "typescript": ">=2.4.1"
+  }
+}
