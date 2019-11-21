@@ -37,7 +37,12 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node {
     return node;
   }
   if (!node.typeArguments) {
-    return ts.createArrayLiteral([]);
+    return ts.createRegularExpressionLiteral(
+      JSON.stringify({
+        name: 'never',
+        props: [],
+      }),
+    );
   }
   return ts.createRegularExpressionLiteral(JSON.stringify(buildInterface(node, typeChecker)));
 }
