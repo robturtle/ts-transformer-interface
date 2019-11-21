@@ -80,12 +80,12 @@ function buildInterface(node: ts.CallExpression, typeChecker: ts.TypeChecker): r
 function buildInterfaceProperty(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.Property {
   return {
     name: symbol.getName(),
-    optional: propertyOptional(symbol, typeChecker),
+    optional: propertyOptional(symbol),
     type: propertyType(symbol, typeChecker),
   };
 }
 
-function propertyOptional(symbol: ts.Symbol, typeChecker: ts.TypeChecker): boolean {
+function propertyOptional(symbol: ts.Symbol): boolean {
   return !symbol.declarations.some(d => (d as ts.PropertySignature).questionToken === undefined);
 }
 
