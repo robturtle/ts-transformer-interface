@@ -31,7 +31,8 @@
     "index.js",
     "index.d.ts",
     "transformer.ts",
-    "transformer.js"
+    "transformer.js",
+    "runtime-schema.ts"
   ],
   "homepage": "https://github.com/robturtle/ts-transformer-interface#readme",
   "devDependencies": {
