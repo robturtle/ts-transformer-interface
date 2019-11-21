@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import * as path from 'path';
-import { runtime } from './index.d';
+import { buildInterface } from './runtime-schema';
 
 export default function transformer(program: ts.Program): ts.TransformerFactory<ts.SourceFile> {
   return (context: ts.TransformationContext) => (file: ts.SourceFile) =>
@@ -72,67 +72,4 @@ function isRuntimeTypeCallExpression(
     !!declaration.name &&
     declaration.name.getText() === 'schema'
   );
-}
-
-function buildInterface(type: ts.Type, typeChecker: ts.TypeChecker): runtime.Schema {
-  const symbols = typeChecker.getPropertiesOfType(type);
-  return {
-    name: type.symbol.getName(),
-    props: symbols.map(s => buildInterfaceProperty(s, typeChecker)),
-  };
-}
-
-function buildInterfaceProperty(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.Property {
-  return {
-    name: symbol.getName(),
-    optional: propertyOptional(symbol),
-    type: propertyType(symbol, typeChecker),
-  };
-}
-
-function propertyOptional(symbol: ts.Symbol): boolean {
-  return !symbol.declarations.some(d => (d as ts.PropertySignature).questionToken === undefined);
-}
-
-function propertyType(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.Type {
-  const declarations = symbol.declarations;
-  if (declarations.length === 0) {
-    return null;
-  }
-  const propertySignature = (declarations[0] as any).type;
-  return getTypeFromSignature(propertySignature, typeChecker);
-}
-
-function getTypeFromSignature(
-  propertySignature: ts.PropertySignature,
-  typeChecker: ts.TypeChecker,
-): runtime.Type {
-  const kind = propertySignature.kind as ts.SyntaxKind;
-  switch (kind) {
-    case ts.SyntaxKind.StringKeyword:
-      return 'string';
-    case ts.SyntaxKind.NumberKeyword:
-      return 'number';
-    case ts.SyntaxKind.BooleanKeyword:
-      return 'boolean';
-    case ts.SyntaxKind.FunctionKeyword:
-      return 'function';
-    case ts.SyntaxKind.ObjectKeyword:
-      return 'object';
-    case ts.SyntaxKind.NullKeyword:
-      return 'null';
-    case ts.SyntaxKind.TypeReference:
-      return {
-        referenceName: propertySignature.getText(),
-      };
-    case ts.SyntaxKind.ArrayType:
-      return {
-        arrayElementType: getTypeFromSignature(
-          (<ts.ArrayTypeNode>(propertySignature as any)).elementType as any,
-          typeChecker,
-        ),
-      };
-    default:
-      return null;
-  }
 }
