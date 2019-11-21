@@ -15,4 +15,4 @@ interface User {
   previousLocations?: Location[]; // optional type reference array
 }
 
-schema<User>();
+const userSchema = schema<User>();
