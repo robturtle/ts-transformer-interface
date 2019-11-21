@@ -13,7 +13,7 @@ export namespace runtime {
 
   export interface Schema {
     name: string;
-    props: runtime.Property[];
+    props: Property[];
   }
 }
 
