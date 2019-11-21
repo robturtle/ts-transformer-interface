@@ -31,20 +31,24 @@ function visitNodeAndChildren(
   );
 }
 
+const badInterface = ts.createRegularExpressionLiteral(
+  JSON.stringify({
+    name: 'never',
+    props: [],
+  }),
+);
+
 function visitNode(node: ts.Node, program: ts.Program): ts.Node {
   const typeChecker = program.getTypeChecker();
   if (!isRuntimeTypeCallExpression(node, typeChecker)) {
     return node;
   }
-  if (!node.typeArguments) {
-    return ts.createRegularExpressionLiteral(
-      JSON.stringify({
-        name: 'never',
-        props: [],
-      }),
-    );
+  if (!node.typeArguments || node.typeArguments.length === 0) {
+    return badInterface;
+  } else {
+    const type = typeChecker.getTypeFromTypeNode(node.typeArguments[0]);
+    return ts.createRegularExpressionLiteral(JSON.stringify(buildInterface(type, typeChecker)));
   }
-  return ts.createRegularExpressionLiteral(JSON.stringify(buildInterface(node, typeChecker)));
 }
 
 const indexTs = path.join(__dirname, 'index.d.ts');
@@ -70,11 +74,7 @@ function isRuntimeTypeCallExpression(
   );
 }
 
-function buildInterface(node: ts.CallExpression, typeChecker: ts.TypeChecker): runtime.Schema {
-  if (node.typeArguments === undefined) {
-    throw 'type argument is undefined';
-  }
-  const type: ts.Type = typeChecker.getTypeFromTypeNode(node.typeArguments[0]);
+function buildInterface(type: ts.Type, typeChecker: ts.TypeChecker): runtime.Schema {
   const symbols = typeChecker.getPropertiesOfType(type);
   return {
     name: type.symbol.getName(),
