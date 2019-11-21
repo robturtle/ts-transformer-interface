@@ -11,5 +11,6 @@ var userSchema = {
     { name: 'spouse', optional: true, type: 'User' },
     { name: 'children', optional: false, type: { arrayElementType: 'User' } },
     { name: 'previousLocations', optional: true, type: { arrayElementType: 'Location' } },
+    { name: 'referrer', optional: false, type: null },
   ],
 };

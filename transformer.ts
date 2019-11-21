@@ -89,7 +89,7 @@ function propertyOptional(symbol: ts.Symbol, typeChecker: ts.TypeChecker): boole
 function propertyType(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.Type {
   const declarations = symbol.declarations;
   if (declarations.length === 0) {
-    return undefined;
+    return null;
   }
   const propertySignature = (declarations[0] as any).type;
   return getTypeFromSignature(propertySignature, typeChecker);
@@ -123,6 +123,6 @@ function getTypeFromSignature(
         ),
       };
     default:
-      return undefined;
+      return null;
   }
 }

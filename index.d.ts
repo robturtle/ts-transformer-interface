@@ -1,5 +1,5 @@
 export namespace runtime {
-  export type Type = string | ArrayType;
+  export type Type = null | string | ArrayType;
 
   export interface Property {
     name: string;
