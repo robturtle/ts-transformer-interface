@@ -117,7 +117,9 @@ function getTypeFromSignature(
     case ts.SyntaxKind.NullKeyword:
       return 'null';
     case ts.SyntaxKind.TypeReference:
-      return propertySignature.getText();
+      return {
+        referenceName: propertySignature.getText(),
+      };
     case ts.SyntaxKind.ArrayType:
       return {
         arrayElementType: getTypeFromSignature(
