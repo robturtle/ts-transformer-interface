@@ -1,0 +1,20 @@
+export namespace runtime {
+  export type Type = string | ArrayType;
+
+  export interface Property {
+    name: string;
+    optional: boolean;
+    type: Type;
+  }
+
+  export interface ArrayType {
+    arrayElementType: Type;
+  }
+
+  export interface Schema {
+    name: string;
+    props: runtime.Property[];
+  }
+}
+
+export function schema<T extends object>(): runtime.Schema;
