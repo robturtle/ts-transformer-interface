@@ -11,6 +11,9 @@
   ],
   "author": "Yang Liu",
   "license": "MIT",
+  "scripts": {
+    "test": "tsc && node test/compile && mocha test"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
