@@ -66,6 +66,9 @@ function isRuntimeTypeCallExpression(
 }
 
 function buildInterface(node: ts.CallExpression, typeChecker: ts.TypeChecker): runtime.Schema {
+  if (node.typeArguments === undefined) {
+    throw 'type argument is undefined';
+  }
   const type: ts.Type = typeChecker.getTypeFromTypeNode(node.typeArguments[0]);
   const symbols = typeChecker.getPropertiesOfType(type);
   return {
