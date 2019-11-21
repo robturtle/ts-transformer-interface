@@ -54,6 +54,7 @@ var userSchema = {
 
 ## Installation
 ### ttypescript
+I personally use [ts-patch](https://www.npmjs.com/package/ts-patch) to install all the transformers.
 ```json
 // tsconfig.json
 {
