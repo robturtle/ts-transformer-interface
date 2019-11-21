@@ -13,7 +13,7 @@ interface User {
   spouse?: User; // optional type reference
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
-  referrer: User | string; // union type will become null
+  referrer: User | string; // union type not supported, will become null
 }
 
 const userSchema = schema<User>();
