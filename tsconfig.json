@@ -8,6 +8,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["transformer.ts", "test/compile/*.ts"],
+  "include": ["transformer.ts", "test/compile/*.ts", "runtime-schema.ts"],
   "exclude": ["node_modules"]
 }
