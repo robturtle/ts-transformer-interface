@@ -1,4 +1,5 @@
 # ts-transformer-interface
+
 A TypeScript custom transformer generating runtime interface info. This is mainly for the runtime JSON schema validation.
 So only a subset of TypeScript types are handled. They're
 
@@ -7,7 +8,9 @@ So only a subset of TypeScript types are handled. They're
 3. array of (primitive type | type reference)
 
 ## Example
+
 Input
+
 ```typescript
 import { schema } from 'ts-transformer-interface';
 
@@ -30,8 +33,8 @@ interface User {
 const userSchema = schema<User>();
 ```
 
-
 Output
+
 ```javascript
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -42,28 +45,32 @@ var userSchema = {
     { name: 'name', optional: false, type: 'string' },
     { name: 'title', optional: true, type: 'string' },
     { name: 'houses', optional: false, type: { arrayElementType: 'string' } },
-    { name: 'location', optional: false, type: 'Location' },
-    { name: 'spouse', optional: true, type: 'User' },
-    { name: 'children', optional: false, type: { arrayElementType: 'User' } },
-    { name: 'previousLocations', optional: true, type: { arrayElementType: 'Location' } },
+    { name: 'location', optional: false, type: { referenceName: 'Location' } },
+    { name: 'spouse', optional: true, type: { referenceName: 'User' } },
+    { name: 'children', optional: false, type: { arrayElementType: { referenceName: 'User' } } },
+    {
+      name: 'previousLocations',
+      optional: true,
+      type: { arrayElementType: { referenceName: 'Location' } },
+    },
     { name: 'referrer', optional: false, type: null },
   ],
 };
-
 ```
 
 ## Installation
+
 ### ttypescript
+
 I personally use [ts-patch](https://www.npmjs.com/package/ts-patch) to install all the transformers.
+
 ```json
 // tsconfig.json
 {
   "compilerOptions": {
     // ...
-    "plugins": [
-      { "transform": "ts-transformer-interface/transformer" }
-    ]
-  },
+    "plugins": [{ "transform": "ts-transformer-interface/transformer" }]
+  }
   // ...
 }
 ```
