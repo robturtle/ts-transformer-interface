@@ -28,6 +28,7 @@ interface User {
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
   referrer: User | string; // union type not supported, will become null
+  box: Box<User>; // generic type
 }
 
 const userSchema = schema<User>();
@@ -54,6 +55,7 @@ var userSchema = {
       type: { arrayElementType: { referenceName: 'Location' } },
     },
     { name: 'referrer', optional: false, type: null },
+    { name: 'box', optional: false, type: { selfType: 'Box', typeArgumentType: 'User' } },
   ],
 };
 ```
