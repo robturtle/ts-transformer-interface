@@ -6,10 +6,12 @@ interface Location {
 }
 
 interface Box<T> {
+  // generic type 1
   data: T;
 }
 
 interface BigBox<T> {
+  // generic type with parameterized type
   box: Box<T>;
 }
 
@@ -22,7 +24,7 @@ interface User {
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
   referrer: User | string; // union type not supported, will become null
-  box: BigBox<Box<User[]>>; // generic type
+  box: Box<Box<User[]>>; // parameterized type
 }
 
 const boxSchema = schema<Box<any>>();

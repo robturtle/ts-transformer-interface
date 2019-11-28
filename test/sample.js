@@ -47,7 +47,7 @@ var userSchema = {
       name: 'box',
       optional: false,
       type: {
-        selfType: 'BigBox',
+        selfType: 'Box',
         typeArgumentType: {
           selfType: 'Box',
           typeArgumentType: { arrayElementType: { referenceName: 'User' } },
