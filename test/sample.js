@@ -16,5 +16,7 @@ var userSchema = {
       type: { arrayElementType: { referenceName: 'Location' } },
     },
     { name: 'referrer', optional: false, type: null },
+    { name: 'box', optional: false, type: { selfType: 'Box', typeArgumentType: 'User' } },
   ],
 };
+console.log(JSON.stringify(userSchema, null, 2));

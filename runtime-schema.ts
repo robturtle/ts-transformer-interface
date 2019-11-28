@@ -49,9 +49,19 @@ function getTypeFromSignature(
     case ts.SyntaxKind.NullKeyword:
       return 'null';
     case ts.SyntaxKind.TypeReference:
-      return {
-        referenceName: propertySignature.getText(),
-      };
+      const typeArgs: ts.Node[] = (propertySignature as any).typeArguments;
+      if (typeArgs && typeArgs.length > 0) {
+        const typeName = (propertySignature as any).typeName;
+        const typeArg = typeArgs[0];
+        return {
+          selfType: typeName.escapedText,
+          typeArgumentType: typeArg.getText(),
+        };
+      } else {
+        return {
+          referenceName: propertySignature.getText(),
+        };
+      }
     case ts.SyntaxKind.ArrayType:
       return {
         arrayElementType: getTypeFromSignature(

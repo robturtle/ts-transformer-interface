@@ -5,6 +5,10 @@ interface Location {
   lng: number;
 }
 
+interface Box<T> {
+  data: T;
+}
+
 interface User {
   name: string; // required primitive
   title?: string; // optional primitive
@@ -14,6 +18,8 @@ interface User {
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
   referrer: User | string; // union type not supported, will become null
+  box: Box<User>; // generic type
 }
 
 const userSchema = schema<User>();
+console.log(JSON.stringify(userSchema, null, 2));
