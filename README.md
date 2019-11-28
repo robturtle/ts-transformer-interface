@@ -28,7 +28,6 @@ interface User {
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
   referrer: User | string; // union type not supported, will become null
-  box: Box<User>; // generic type
 }
 
 const userSchema = schema<User>();
@@ -55,10 +54,91 @@ var userSchema = {
       type: { arrayElementType: { referenceName: 'Location' } },
     },
     { name: 'referrer', optional: false, type: null },
-    { name: 'box', optional: false, type: { selfType: 'Box', typeArgumentType: 'User' } },
   ],
 };
 ```
+
+## Generic types
+
+### Type definition
+
+```typescript
+interface Box<T> {
+  // generic type 1
+  data: T;
+}
+
+interface BigBox<T> {
+  // generic type with parameterized type
+  box: Box<T>;
+}
+
+// NOTE: since we need a concrete type here so we need to parameterize with `any` as placeholder
+const boxSchema = schema<Box<any>>();
+const bigboxSchema = schema<BigBox<any>>();
+```
+
+output
+
+```javascript
+var boxSchema = {
+  name: 'Box',
+  props: [
+    {
+      name: 'data',
+      optional: false,
+      type: { genericParameterName: 'T', genericParameterType: { referenceName: 'T' } },
+    },
+  ],
+};
+
+var bigboxSchema = {
+  name: 'BigBox',
+  props: [
+    {
+      name: 'box',
+      optional: false,
+      type: {
+        genericParameterName: 'T',
+        genericParameterType: { selfType: 'Box', typeArgumentType: { referenceName: 'T' } },
+      },
+    },
+  ],
+};
+```
+
+### Concrete generic types
+
+```TypeScript
+interface User {
+  // ...
+  box: Box<Box<User[]>>; // parameterized type
+}
+```
+
+output
+
+```javascript
+{
+  name: "User",
+  props: [
+    // ...
+    {
+      name: 'box',
+      optional: false,
+      type: {
+        selfType: 'Box',
+        typeArgumentType: {
+          selfType: 'Box',
+          typeArgumentType: { arrayElementType: { referenceName: 'User' } },
+        },
+      },
+    }
+  ]
+}
+```
+
+Reads as: `box` if of type `a Box of a Box of an Array of User`.
 
 ## Installation
 
