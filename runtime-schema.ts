@@ -26,8 +26,18 @@ function propertyType(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.T
   if (declarations.length === 0) {
     return null;
   }
-  const propertySignature = (declarations[0] as any).type;
-  return getTypeFromSignature(propertySignature, typeChecker);
+  const declaration = declarations[0];
+  const typeParameters = (declaration as any)?.parent?.typeParameters;
+  const propertySignature = (declaration as any).type;
+  if (typeParameters && typeParameters.length > 0) {
+    const typeParam = typeParameters[0];
+    return {
+      genericParameterName: typeParam.getText(),
+      genericParameterType: getTypeFromSignature(propertySignature, typeChecker),
+    };
+  } else {
+    return getTypeFromSignature(propertySignature, typeChecker);
+  }
 }
 
 function getTypeFromSignature(
@@ -52,10 +62,10 @@ function getTypeFromSignature(
       const typeArgs: ts.Node[] = (propertySignature as any).typeArguments;
       if (typeArgs && typeArgs.length > 0) {
         const typeName = (propertySignature as any).typeName;
-        const typeArg = typeArgs[0];
+        const typeArg = typeArgs[0] as ts.PropertySignature;
         return {
           selfType: typeName.escapedText,
-          typeArgumentType: typeArg.getText(),
+          typeArgumentType: getTypeFromSignature(typeArg, typeChecker),
         };
       } else {
         return {

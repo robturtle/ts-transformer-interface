@@ -1,5 +1,5 @@
 export namespace runtime {
-  export type Type = null | string | ArrayType | ReferenceType | GenericType;
+  export type Type = null | string | ArrayType | ReferenceType | ParameterizedType | GenericType;
 
   export interface Property {
     name: string;
@@ -15,9 +15,14 @@ export namespace runtime {
     referenceName: string;
   }
 
-  export interface GenericType {
+  export interface ParameterizedType {
     selfType: string;
-    typeArgumentType: string;
+    typeArgumentType: Type;
+  }
+
+  export interface GenericType {
+    genericParameterName: string;
+    genericParameterType: Type;
   }
 
   export interface Schema {
