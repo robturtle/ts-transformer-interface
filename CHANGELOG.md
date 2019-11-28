@@ -1,6 +1,10 @@
+## 1.2.0
+
+- supports generic type with single type parameter
+
 ## 1.1.0
 
-- supports generic type with single type argument
+- supports parameterized type with single type argument
 
 ## 1.0.0
 
