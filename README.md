@@ -5,6 +5,8 @@ So only a subset of TypeScript types are handled. They're
 
 1. primitive types (string, number, boolean, etc)
 2. type reference (other interface/class)
+   1. generic type with single type parameter
+   2. parameterized type with single type argument
 3. array of (primitive type | type reference)
 
 ## Example
