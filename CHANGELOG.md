@@ -1,3 +1,7 @@
+## 1.1.0
+
+- supports generic type with single type argument
+
 ## 1.0.0
 
 - output interface change:

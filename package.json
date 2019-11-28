@@ -1,6 +1,6 @@
 {
   "name": "ts-transformer-interface",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A TypeScript custom transformer generating runtime interface info",
   "repository": {
     "type": "git",
