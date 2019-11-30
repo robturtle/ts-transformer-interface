@@ -64,6 +64,8 @@ function getTypeFromSignature(
       return 'null';
     case ts.SyntaxKind.AnyKeyword:
       return 'any';
+    case ts.SyntaxKind.UnknownKeyword:
+      return 'unknown';
     case ts.SyntaxKind.TypeReference:
       const typeArgs: ts.Node[] = (propertySignature as any).typeArguments;
       if (typeArgs && typeArgs.length > 0) {
