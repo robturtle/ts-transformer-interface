@@ -1,10 +1,14 @@
 import * as ts from 'typescript';
 import { runtime } from './index.d';
 
-export function buildInterface(type: ts.Type, typeChecker: ts.TypeChecker): runtime.Schema {
+export function buildInterface(
+  name: string,
+  type: ts.Type,
+  typeChecker: ts.TypeChecker,
+): runtime.Schema {
   const symbols = typeChecker.getPropertiesOfType(type);
   return {
-    name: type.symbol.getName(),
+    name: name,
     props: symbols.map(s => buildInterfaceProperty(s, typeChecker)),
   };
 }
