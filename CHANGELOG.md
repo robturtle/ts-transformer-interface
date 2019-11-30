@@ -1,3 +1,9 @@
+## 1.3.0
+
+- show full scoped type name
+  - before: 'Marker', now: 'google.maps.Marker'
+  - before: 'Box', now: 'Box<any>'
+
 ## 1.2.0
 
 - supports generic type with single type parameter
