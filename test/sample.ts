@@ -31,6 +31,12 @@ interface User {
   marker: google.maps.Marker; // scoped type
 }
 
+interface Special {
+  null: null;
+  any: any;
+  unknown: unknown;
+}
+
 const boxSchema = schema<Box<any>>();
 console.log(JSON.stringify(boxSchema, null, 2));
 console.log('-'.repeat(80));
@@ -41,4 +47,8 @@ console.log('-'.repeat(80));
 
 const userSchema = schema<User>();
 console.log(JSON.stringify(userSchema, null, 2));
+console.log('-'.repeat(80));
+
+const specialSchema = schema<Special>();
+console.log(JSON.stringify(specialSchema, null, 2));
 console.log('-'.repeat(80));

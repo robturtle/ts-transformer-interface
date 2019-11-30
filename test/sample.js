@@ -50,3 +50,13 @@ var userSchema = {
 };
 console.log(JSON.stringify(userSchema, null, 2));
 console.log('-'.repeat(80));
+var specialSchema = {
+  name: 'Special',
+  props: [
+    { name: 'null', optional: false, type: 'null' },
+    { name: 'any', optional: false, type: 'any' },
+    { name: 'unknown', optional: false, type: 'unknown' },
+  ],
+};
+console.log(JSON.stringify(specialSchema, null, 2));
+console.log('-'.repeat(80));
