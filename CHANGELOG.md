@@ -1,3 +1,8 @@
+## 1.4.0
+
+- handles any keyword
+- handles unknown keyword
+
 ## 1.3.0
 
 - show full scoped type name
