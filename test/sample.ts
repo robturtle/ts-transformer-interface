@@ -27,14 +27,14 @@ interface User {
   box: Box<Box<User[]>>; // parameterized type
 }
 
-const boxSchema = schema<Box<any>>();
-console.log(JSON.stringify(boxSchema, null, 2));
-console.log('-'.repeat(80));
+// const boxSchema = schema<Box<any>>();
+// console.log(JSON.stringify(boxSchema, null, 2));
+// console.log('-'.repeat(80));
 
-const bigboxSchema = schema<BigBox<any>>();
-console.log(JSON.stringify(bigboxSchema, null, 2));
-console.log('-'.repeat(80));
+// const bigboxSchema = schema<BigBox<any>>();
+// console.log(JSON.stringify(bigboxSchema, null, 2));
+// console.log('-'.repeat(80));
 
 const userSchema = schema<User>();
-console.log(JSON.stringify(userSchema, null, 2));
-console.log('-'.repeat(80));
+// console.log(JSON.stringify(userSchema, null, 2));
+// console.log('-'.repeat(80));

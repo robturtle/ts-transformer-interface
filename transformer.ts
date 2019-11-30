@@ -1,6 +1,7 @@
 import * as ts from 'typescript';
 import * as path from 'path';
 import { buildInterface } from './runtime-schema';
+import { inspect } from './test/inspect/inspect';
 
 export default function transformer(program: ts.Program): ts.TransformerFactory<ts.SourceFile> {
   return (context: ts.TransformationContext) => (file: ts.SourceFile) =>
@@ -46,6 +47,7 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node {
   if (!node.typeArguments || node.typeArguments.length === 0) {
     return badInterface;
   } else {
+    inspect(node);
     const type = typeChecker.getTypeFromTypeNode(node.typeArguments[0]);
     return ts.createRegularExpressionLiteral(JSON.stringify(buildInterface(type, typeChecker)));
   }

@@ -1,33 +1,12 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 var index_1 = require('../index');
-var boxSchema = {
-  name: 'Box',
-  props: [
-    {
-      name: 'data',
-      optional: false,
-      type: { genericParameterName: 'T', genericParameterType: { referenceName: 'T' } },
-    },
-  ],
-};
-console.log(JSON.stringify(boxSchema, null, 2));
-console.log('-'.repeat(80));
-var bigboxSchema = {
-  name: 'BigBox',
-  props: [
-    {
-      name: 'box',
-      optional: false,
-      type: {
-        genericParameterName: 'T',
-        genericParameterType: { selfType: 'Box', typeArgumentType: { referenceName: 'T' } },
-      },
-    },
-  ],
-};
-console.log(JSON.stringify(bigboxSchema, null, 2));
-console.log('-'.repeat(80));
+// const boxSchema = schema<Box<any>>();
+// console.log(JSON.stringify(boxSchema, null, 2));
+// console.log('-'.repeat(80));
+// const bigboxSchema = schema<BigBox<any>>();
+// console.log(JSON.stringify(bigboxSchema, null, 2));
+// console.log('-'.repeat(80));
 var userSchema = {
   name: 'User',
   props: [
@@ -56,5 +35,5 @@ var userSchema = {
     },
   ],
 };
-console.log(JSON.stringify(userSchema, null, 2));
-console.log('-'.repeat(80));
+// console.log(JSON.stringify(userSchema, null, 2));
+// console.log('-'.repeat(80));
