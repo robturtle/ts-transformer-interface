@@ -10,11 +10,6 @@ interface Box<T> {
   data: T;
 }
 
-interface BigBox<T> {
-  // generic type with parameterized type
-  box: Box<T>;
-}
-
 namespace google {
   export namespace maps {
     export interface Marker {
@@ -36,17 +31,14 @@ interface User {
   marker: google.maps.Marker; // scoped type
 }
 
-// const boxSchema = schema<Box<any>>();
-// console.log(JSON.stringify(boxSchema, null, 2));
-// console.log('-'.repeat(80));
-
-// const bigboxSchema = schema<BigBox<any>>();
-// console.log(JSON.stringify(bigboxSchema, null, 2));
-// console.log('-'.repeat(80));
+const boxSchema = schema<Box<any>>();
+console.log(JSON.stringify(boxSchema, null, 2));
+console.log('-'.repeat(80));
 
 const markerSchema = schema<google.maps.Marker>();
 console.log(JSON.stringify(markerSchema, null, 2));
+console.log('-'.repeat(80));
 
-// const userSchema = schema<User>();
-// console.log(JSON.stringify(userSchema, null, 2));
-// console.log('-'.repeat(80));
+const userSchema = schema<User>();
+console.log(JSON.stringify(userSchema, null, 2));
+console.log('-'.repeat(80));
