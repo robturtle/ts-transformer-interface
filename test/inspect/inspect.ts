@@ -1,13 +1,11 @@
 import * as ts from 'typescript';
 
-export function inspect(node: ts.Node, depth = 0) {
-  console.log(
-    new Array(depth + 1).join('--'),
-    ts.SyntaxKind[node.kind],
-    node.pos,
-    node.end,
-    node.getText(),
-  );
+export function inspectNode(node: ts.Node, showText: boolean = true, depth = 0) {
+  const parts = [new Array(depth + 1).join('--'), ts.SyntaxKind[node.kind], node.pos, node.end];
+  if (showText) {
+    parts.push(node.getText());
+  }
+  console.log(parts.join(' '));
   depth++;
-  node.getChildren().forEach(c => inspect(c, depth));
+  node.getChildren().forEach(c => inspectNode(c, showText, depth));
 }
