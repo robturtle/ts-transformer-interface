@@ -15,6 +15,14 @@ interface BigBox<T> {
   box: Box<T>;
 }
 
+namespace google {
+  export namespace maps {
+    export interface Marker {
+      value: string;
+    }
+  }
+}
+
 interface User {
   name: string; // required primitive
   title?: string; // optional primitive
@@ -25,6 +33,7 @@ interface User {
   previousLocations?: Location[]; // optional type reference array
   referrer: User | string; // union type not supported, will become null
   box: Box<Box<User[]>>; // parameterized type
+  marker: google.maps.Marker; // scoped type
 }
 
 // const boxSchema = schema<Box<any>>();
@@ -35,6 +44,9 @@ interface User {
 // console.log(JSON.stringify(bigboxSchema, null, 2));
 // console.log('-'.repeat(80));
 
-const userSchema = schema<User>();
+const markerSchema = schema<google.maps.Marker>();
+console.log(JSON.stringify(markerSchema, null, 2));
+
+// const userSchema = schema<User>();
 // console.log(JSON.stringify(userSchema, null, 2));
 // console.log('-'.repeat(80));
