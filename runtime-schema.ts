@@ -87,6 +87,13 @@ function getTypeFromSignature(
           typeChecker,
         ),
       };
+    case ts.SyntaxKind.TypeLiteral:
+      const members: Map<string, ts.Symbol> = (propertySignature as any).symbol.members;
+      return {
+        props: Array.from(members.values()).map(m =>
+          buildInterfaceProperty(m as ts.Symbol, typeChecker),
+        ),
+      };
     default:
       return null;
   }

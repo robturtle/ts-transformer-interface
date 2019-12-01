@@ -1,3 +1,15 @@
+## 1.5.0
+
+- supports type literal
+  ```TypeScript
+  interface Order {
+    position: {
+      lat: number;
+      lng: number;
+    } // now supported
+  }
+  ```
+
 ## 1.4.0
 
 - handles any keyword

@@ -60,3 +60,21 @@ var specialSchema = {
 };
 console.log(JSON.stringify(specialSchema, null, 2));
 console.log('-'.repeat(80));
+var withTypeLiteralSchema = {
+  name: 'WithTypeLiteral',
+  props: [
+    { name: 'value', optional: false, type: 'number' },
+    {
+      name: 'position',
+      optional: false,
+      type: {
+        props: [
+          { name: 'lat', optional: false, type: 'number' },
+          { name: 'lng', optional: false, type: 'number' },
+        ],
+      },
+    },
+  ],
+};
+console.log(JSON.stringify(withTypeLiteralSchema, null, 2));
+console.log('-'.repeat(80));

@@ -52,3 +52,14 @@ console.log('-'.repeat(80));
 const specialSchema = schema<Special>();
 console.log(JSON.stringify(specialSchema, null, 2));
 console.log('-'.repeat(80));
+
+interface WithTypeLiteral {
+  value: number;
+  position: {
+    lat: number;
+    lng: number;
+  };
+}
+const withTypeLiteralSchema = schema<WithTypeLiteral>();
+console.log(JSON.stringify(withTypeLiteralSchema, null, 2));
+console.log('-'.repeat(80));
