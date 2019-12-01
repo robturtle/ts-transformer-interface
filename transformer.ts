@@ -1,7 +1,6 @@
-import * as ts from 'typescript';
 import * as path from 'path';
+import * as ts from 'typescript';
 import { buildInterface } from './runtime-schema';
-import { inspectNode } from './test/inspect/inspect';
 
 export default function transformer(program: ts.Program): ts.TransformerFactory<ts.SourceFile> {
   return (context: ts.TransformationContext) => (file: ts.SourceFile) =>
