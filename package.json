@@ -12,6 +12,7 @@
   "author": "Yang Liu",
   "license": "MIT",
   "scripts": {
+    "parser": "ts-node test/inspect/parser.ts",
     "test": "tsc && node test/compile && mocha test"
   },
   "husky": {

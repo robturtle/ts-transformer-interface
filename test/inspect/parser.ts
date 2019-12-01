@@ -4,7 +4,10 @@ import * as fs from 'fs';
 
 const source = `
   interface Compound {
-    position: number;
+    position: {
+      lat: number;
+      lng: number;
+    };
     driver: User;
     orders: Paginated<Order>;
     marker: google.maps.Marker;
