@@ -56,7 +56,8 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node {
   }
 }
 
-const indexTs = path.join(__dirname, 'index.d.ts');
+const indexDTs = path.join(__dirname, 'index.d.ts');
+const indexTs = path.join(__dirname, 'index.ts');
 
 function isRuntimeTypeCallExpression(
   node: ts.Node,
@@ -73,7 +74,8 @@ function isRuntimeTypeCallExpression(
   return (
     !!declaration &&
     !ts.isJSDocSignature(declaration) &&
-    path.join(declaration.getSourceFile().fileName) === indexTs &&
+    (path.join(declaration.getSourceFile().fileName) === indexTs ||
+      path.join(declaration.getSourceFile().fileName) === indexDTs) &&
     !!declaration.name &&
     declaration.name.getText() === 'schema'
   );
