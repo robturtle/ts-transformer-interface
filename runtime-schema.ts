@@ -31,7 +31,14 @@ function propertyType(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.T
     return null;
   }
   const declaration = declarations[0];
-  const typeParameters = (declaration as any)?.parent?.typeParameters;
+  if (!declaration) {
+    return null;
+  }
+  const parent = (declaration as any).parent;
+  if (!parent) {
+    return null;
+  }
+  const typeParameters = parent.typeParameters;
   const propertySignature = (declaration as any).type;
   if (typeParameters && typeParameters.length > 0) {
     const typeParam = typeParameters[0];
