@@ -104,15 +104,7 @@ function getTypeFromSignature(
       };
     case ts.SyntaxKind.UnionType:
       const union = ((propertySignature as any) as ts.UnionTypeNode).types.map(t => {
-        const type = typeChecker.getTypeFromTypeNode(t);
-        const primitive = (type as any).intrinsicName;
-        if (primitive) {
-          return primitive;
-        } else {
-          return {
-            referenceName: type.symbol.escapedName,
-          };
-        }
+        return getTypeFromSignature(t as any, typeChecker);
       });
       return { union };
     default:
