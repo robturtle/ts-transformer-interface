@@ -1,3 +1,7 @@
+## 1.6.0
+
+- supports union types
+
 ## 1.5.0
 
 - supports type literal
