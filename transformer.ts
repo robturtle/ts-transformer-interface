@@ -46,7 +46,6 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node {
   if (!node.typeArguments || node.typeArguments.length === 0) {
     return badInterface;
   } else {
-    // inspectNode(node);
     const typeNode = node.typeArguments[0];
     const type = typeChecker.getTypeFromTypeNode(typeNode);
     return ts.createRegularExpressionLiteral(
