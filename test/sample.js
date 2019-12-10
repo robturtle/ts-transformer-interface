@@ -33,7 +33,7 @@ var userSchema = {
       optional: true,
       type: { arrayElementType: { referenceName: 'Location' } },
     },
-    { name: 'referrer', optional: false, type: null },
+    { name: 'referrer', optional: false, type: { union: [{ referenceName: 'User' }, 'string'] } },
     {
       name: 'box',
       optional: false,

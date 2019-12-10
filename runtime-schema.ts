@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import { runtime } from './index.d';
+import { inspectNode } from './test/inspect/inspect';
 
 export function buildInterface(
   name: string,
@@ -101,6 +102,19 @@ function getTypeFromSignature(
           buildInterfaceProperty(m as ts.Symbol, typeChecker),
         ),
       };
+    case ts.SyntaxKind.UnionType:
+      const union = ((propertySignature as any) as ts.UnionTypeNode).types.map(t => {
+        const type = typeChecker.getTypeFromTypeNode(t);
+        const primitive = (type as any).intrinsicName;
+        if (primitive) {
+          return primitive;
+        } else {
+          return {
+            referenceName: type.symbol.escapedName,
+          };
+        }
+      });
+      return { union };
     default:
       return null;
   }

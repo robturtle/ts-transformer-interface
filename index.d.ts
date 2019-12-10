@@ -7,7 +7,8 @@ export namespace runtime {
     | ReferenceType
     | ParameterizedType
     | GenericType
-    | LiteralType;
+    | LiteralType
+    | UnionType;
 
   /** @since 1.0.0 */
   export interface Property {
@@ -41,6 +42,11 @@ export namespace runtime {
   /** @since 1.5.0 */
   export interface LiteralType {
     props: Property[];
+  }
+
+  /** @since 1.6.0 */
+  export interface UnionType {
+    union: Type[];
   }
 
   /** @since 1.0.0 */
