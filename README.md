@@ -28,7 +28,9 @@ interface User {
   spouse?: User; // optional type reference
   children: User[]; // type reference array
   previousLocations?: Location[]; // optional type reference array
-  referrer: User | string; // union type not supported, will become null
+  referrer: User | string; // union type
+  box: Box<Box<User[]>>; // parameterized type
+  marker: google.maps.Marker; // scoped type
 }
 
 const userSchema = schema<User>();
@@ -54,7 +56,19 @@ var userSchema = {
       optional: true,
       type: { arrayElementType: { referenceName: 'Location' } },
     },
-    { name: 'referrer', optional: false, type: null },
+    { name: 'referrer', optional: false, type: { union: [{ referenceName: 'User' }, 'string'] } },
+    {
+      name: 'box',
+      optional: false,
+      type: {
+        selfType: 'Box',
+        typeArgumentType: {
+          selfType: 'Box',
+          typeArgumentType: { arrayElementType: { referenceName: 'User' } },
+        },
+      },
+    },
+    { name: 'marker', optional: false, type: { referenceName: 'google.maps.Marker' }
   ],
 };
 ```
