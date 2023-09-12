@@ -1,10 +1,10 @@
 {
   "name": "ts-transformer-interface",
-  "version": "1.6.2",
+  "version": "2.0.0",
   "description": "A TypeScript custom transformer generating runtime interface info",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robturtle/ts-transformer-interface.git"
+    "url": "git+https://github.com/bordeux/ts-transformer-interface.git"
   },
   "keywords": [
     "TypeScript"
@@ -26,7 +26,7 @@
     "printWidth": 100
   },
   "bugs": {
-    "url": "https://github.com/robturtle/ts-transformer-interface/issues"
+    "url": "https://github.com/bordeux/ts-transformer-interface/issues"
   },
   "files": [
     "index.js",
@@ -36,17 +36,17 @@
     "runtime-schema.d.ts",
     "runtime-schema.js"
   ],
-  "homepage": "https://github.com/robturtle/ts-transformer-interface#readme",
+  "homepage": "https://github.com/bordeux/ts-transformer-interface#readme",
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.14",
+    "@types/node": "^18.17.15",
     "husky": "^3.1.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "typescript": "^3.7.2"
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "typescript": ">=2.4.1"
+    "typescript": ">=5.0"
   }
 }

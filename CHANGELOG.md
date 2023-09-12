@@ -1,6 +1,6 @@
-## 1.6.0
+## 2.0.0
 
-- supports union types
+- supports typescript 5
 
 ## 1.5.0
 

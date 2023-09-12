@@ -1,6 +1,5 @@
 import * as ts from 'typescript';
 import { runtime } from './index.d';
-import { inspectNode } from './test/inspect/inspect';
 
 export function buildInterface(
   name: string,
@@ -23,12 +22,12 @@ function buildInterfaceProperty(symbol: ts.Symbol, typeChecker: ts.TypeChecker):
 }
 
 function propertyOptional(symbol: ts.Symbol): boolean {
-  return !symbol.declarations.some(d => (d as ts.PropertySignature).questionToken === undefined);
+  return !symbol.declarations?.some(d => (d as ts.PropertySignature).questionToken === undefined);
 }
 
 function propertyType(symbol: ts.Symbol, typeChecker: ts.TypeChecker): runtime.Type {
-  const declarations = symbol.declarations;
-  if (declarations.length === 0) {
+  const declarations = symbol.declarations as ts.Declaration[];
+  if (declarations?.length === 0) {
     return null;
   }
   const declaration = declarations[0];
