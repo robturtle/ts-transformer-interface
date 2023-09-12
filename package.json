@@ -1,5 +1,5 @@
 {
-  "name": "ts-transformer-interface",
+  "name": "@bordeux/ts-transformer-interface",
   "version": "2.0.0",
   "description": "A TypeScript custom transformer generating runtime interface info",
   "repository": {

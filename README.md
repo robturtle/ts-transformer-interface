@@ -14,7 +14,7 @@ So only a subset of TypeScript types are handled. They're
 Input
 
 ```typescript
-import { schema } from 'ts-transformer-interface';
+import { schema } from '@bordeux/ts-transformer-interface';
 
 interface Location {
   lat: number;
@@ -85,7 +85,7 @@ I personally use [ts-patch](https://www.npmjs.com/package/ts-patch) to install a
 {
   "compilerOptions": {
     // ...
-    "plugins": [{ "transform": "ts-transformer-interface/transformer" }]
+    "plugins": [{ "transform": "@bordeux/ts-transformer-interface/transformer" }]
   }
   // ...
 }
