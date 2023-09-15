@@ -1,3 +1,7 @@
+## 2.0.0
+
+- add support for TypeScript 4.0 & 5.0
+
 ## 1.6.0
 
 - supports union types
