@@ -31,7 +31,7 @@ function visitNodeAndChildren(
   );
 }
 
-const badInterface = ts.createRegularExpressionLiteral(
+const badInterface = ts.factory.createRegularExpressionLiteral(
   JSON.stringify({
     name: 'never',
     props: [],
@@ -48,7 +48,7 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node {
   } else {
     const typeNode = node.typeArguments[0];
     const type = typeChecker.getTypeFromTypeNode(typeNode);
-    return ts.createRegularExpressionLiteral(
+    return ts.factory.createRegularExpressionLiteral(
       JSON.stringify(buildInterface(typeNode.getText(), type, typeChecker)),
     );
   }

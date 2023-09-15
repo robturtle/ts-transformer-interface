@@ -53,7 +53,7 @@ console.log('-'.repeat(80));
 var specialSchema = {
   name: 'Special',
   props: [
-    { name: 'null', optional: false, type: 'null' },
+    { name: 'null', optional: false, type: null },
     { name: 'any', optional: false, type: 'any' },
     { name: 'unknown', optional: false, type: 'unknown' },
   ],
